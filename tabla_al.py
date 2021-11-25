@@ -5,8 +5,10 @@
 # 2- Estado del script y opciones elegidas/ Script state and selected options.
 # 3- Función limpiar la pantalla / function to clear the screen.
 # 4- Función para elegir idioma / function for language selection.
-# 5 Función para elegir cuántos números se van a generar / Function to specify how many numbers to generate.
-
+# 5- Función para elegir cuántos números se van a generar / Function to specify how many numbers to generate.
+# 6- Número inicial / initial number
+# 7- Número final / ending number
+# 8- Formato del archivo de salida / format of generated file
 
 
 # 1- MÓDULOS:
@@ -25,7 +27,7 @@ opciones = {
     "cantidad_numeros": 0,
     "valor_inicio": 0,
     "valor_fin": 0,
-    "formato_archivo": 0
+    "formato_archivo": 0 #0: txt, 1: PDF, 2: csv
 
 }
 
@@ -88,6 +90,15 @@ def final():
     opciones["valor_fin"] = final
 
 
+# 8 - Elegir formato del archivo de salida:
+def formato_archivo():
+    formato = int(input("""Elija el tipo del archivo a generar / Select the type of the file to generate: 
+                            1) .txt 
+                            2) .pdf
+                            3) .csv
+                            """))
+
+    opciones["formato_archivo"] = formato
 
 
 
@@ -97,10 +108,10 @@ def final():
 print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
 
 elegir_idioma()
-elegir_cantidad_numeros()
 inicio()
 final()  
-
+elegir_cantidad_numeros()
+formato_archivo()
 
 # Esto es para ir viendo si el diccionario se va actualizando debidamente
 print(opciones)  
