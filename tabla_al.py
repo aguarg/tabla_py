@@ -157,8 +157,6 @@ def generar_archivo_txt():
 # 11 - Generar archivos en csv / Generate .csv files:    
 def generar_archivo_csv():
     
-    nombre_archivo = ""
-    
     if opciones["idioma"] == 1:
         nombre_archivo = input("Nombre del archivo .csv a generar?: ")
 
@@ -178,6 +176,7 @@ def generar_archivo_csv():
 # Inicio
 print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
 
+# Elegimos idioma:
 elegir_idioma()
 
 borrar()
@@ -193,4 +192,18 @@ formato_archivo()
 # Generamos los números:
 numeros()
 
-# Generamos el archivo:
+# Generamos el archivo con la tabla y el formato elegido:
+if opciones["formato_archivo"] == 1:
+    generar_archivo_txt()
+
+elif opciones["formato_archivo"] == 2:
+    generar_archivo_csv()  
+
+
+# Mensaje de salida:
+if opciones["idioma"] == 1:
+    print("Tabla generada!")
+
+elif opciones["idioma"] == 2:
+    print("Table generated!")       
+
