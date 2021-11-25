@@ -3,7 +3,9 @@
 # ÍNDICE / INDEX:
 # 1- Módules / Modules.
 # 2- Estado del script y opciones elegidas/ Script state and selected options.
-# 3- Función limpiar la pantalla / clear screen function.
+# 3- Función limpiar la pantalla / function to clear the screen.
+# 4- Función para elegir idioma / function for language selection.
+# 5 Función para elegir cuántos números se van a generar / Function to specify how many numbers to generate.
 
 
 
@@ -19,7 +21,7 @@ from os import system, name
 
 # 2- Opciones y estados / options and states:
 opciones = {
-    "idioma": 0,
+    "idioma": 1,
     "cantidad_numeros": 0,
     "valor_inicio": 0,
     "valor_fin": 0,
@@ -41,24 +43,40 @@ def borrar():
         _ = system('clear')
 
 
-
-
-
-print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
-
-
-# Selector de idioma / language selector
-idioma = int(input("""Elija idioma / Select language: 
+# 4- Selector de idioma / language selector
+def elegir_idioma():
+    idioma = int(input("""Elija idioma / Select language: 
                             1) Para español 
                             2) For english
                             """))
 
+    opciones["idioma"] = idioma
+
+
+# 5- Elegir cuantos números generar/ select how many numbers to generate:
+def elegir_cantidad_numeros():
+    if opciones["idioma"] == 1:
+        cantidad = int(input("¿Cuántos números desea generar?: "))
+
+    elif opciones["idioma"] == 2:
+        cantidad = int(input("How many numbers you want to generate?: "))  
+
+    opciones["cantidad_numeros"] = cantidad      
 
 
 
-opciones["idioma"] = idioma
+# Inicio del script:
+print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
 
-print(opciones["idioma"])
+elegir_idioma()
+elegir_cantidad_numeros()  
+
+print(opciones)  
+
+
+
+
+
 
 
 
