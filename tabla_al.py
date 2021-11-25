@@ -1,25 +1,35 @@
 # Generador de una tabla de números aleatorios en formato txt, pdf o csv para imprimir.
 
-# IMPORTAR MÓDULOS:
+# ÍNDICE / INDEX:
+# 1- Módules / Modules.
+# 2- Estado del script y opciones elegidas/ Script state and selected options.
+# 3- Función limpiar la pantalla / clear screen function.
+
+
+
+# 1- MÓDULOS:
 # Módulo para aleatorizar:
 import random   
 
-# Para manejar la consola de windows y linux creando una funcion clear(): 
+# Módulo para manejar la consola de windows y linux creando una funcion clear(): 
 from os import system, name 
 
 
-# Opciones y estados:
+
+
+# 2- Opciones y estados / options and states:
 opciones = {
-    "idioma": 1,
+    "idioma": 0,
     "cantidad_numeros": 0,
-    "inicio": 0,
-    "fin": 0,
-    "formato": 0
+    "valor_inicio": 0,
+    "valor_fin": 0,
+    "formato_archivo": 0
 
 }
 
 
-# Función para limpiar la pantalla:
+
+# 3- Función para limpiar la pantalla / Function to clear the screen:
 def borrar(): 
   
     #para Windows
@@ -43,10 +53,13 @@ idioma = int(input("""Elija idioma / Select language:
                             2) For english
                             """))
 
+
+
+
 opciones["idioma"] = idioma
 
 print(opciones["idioma"])
 
 
-borrar()
+
 
