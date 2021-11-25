@@ -21,7 +21,7 @@ from os import system, name
 
 # 2- Opciones y estados / options and states:
 opciones = {
-    "idioma": 1,
+    "idioma": 1, #1: español, 2: english
     "cantidad_numeros": 0,
     "valor_inicio": 0,
     "valor_fin": 0,
@@ -53,6 +53,8 @@ def elegir_idioma():
     opciones["idioma"] = idioma
 
 
+
+
 # 5- Elegir cuantos números generar/ select how many numbers to generate:
 def elegir_cantidad_numeros():
     if opciones["idioma"] == 1:
@@ -64,13 +66,43 @@ def elegir_cantidad_numeros():
     opciones["cantidad_numeros"] = cantidad      
 
 
+# 6 - Elegir número inicial / select starting number:
+def inicio():
+    if opciones["idioma"] == 1:
+        inicio = int(input("¿Cuál es el número de inicio?: "))
+
+    elif opciones["idioma"] == 2:
+        inicio = int(input("From which number start?: "))
+
+    opciones["valor_inicio"] = inicio    
+        
+
+# 7 - Elegir número final / select ending number:
+def final():
+    if opciones["idioma"] == 1:
+        final = int(input("¿Hasta qué número?: "))
+
+    elif opciones["idioma"] == 2:
+        final = int(input("To which number?: "))
+
+    opciones["valor_fin"] = final
+
+
+
+
+
+
 
 # Inicio del script:
 print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
 
 elegir_idioma()
-elegir_cantidad_numeros()  
+elegir_cantidad_numeros()
+inicio()
+final()  
 
+
+# Esto es para ir viendo si el diccionario se va actualizando debidamente
 print(opciones)  
 
 
