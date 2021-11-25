@@ -140,10 +140,10 @@ def numeros():
 # 10 - Generar archivos en .txt / Generating .txt files:
 def generar_archivo_txt():
     if opciones["idioma"] == 1:
-        nombre_archivo = input("Nombre del archivo a generar?: ")
+        nombre_archivo = input("Nombre del archivo .txt a generar?: ")
 
     elif opciones["idioma"] == 2:
-        nombre_archivo = input("Name of the output file?: ")    
+        nombre_archivo = input("Name of the .txt output file?: ")    
         
     archivo = open(nombre_archivo, "a")
 
@@ -160,16 +160,16 @@ def generar_archivo_csv():
     nombre_archivo = ""
     
     if opciones["idioma"] == 1:
-        nombre_archivo = input("Nombre del archivo csv a generar?: ")
+        nombre_archivo = input("Nombre del archivo .csv a generar?: ")
 
     elif opciones["idioma"] == 2:
-        nombre_archivo = input("Filename to generate?: ")     
+        nombre_archivo = input("Csv filename to generate?: ")     
     
 
     with open(nombre_archivo, 'w', newline="") as file:
         writer = csv.writer(file, delimiter="\t", lineterminator="\n")
     
-    writer.writerow(numeros_generados)
+        writer.writerow(numeros_generados)
 
 
 
@@ -193,5 +193,4 @@ formato_archivo()
 # Generamos los números:
 numeros()
 
-# generamos los archivos:
-generar_archivo_txt()
+# Generamos el archivo:
