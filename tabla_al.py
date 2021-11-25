@@ -1,7 +1,7 @@
 # Generador de una tabla de números aleatorios en formato txt, pdf o csv para imprimir.
 
 # ÍNDICE / INDEX:
-# 1- Módules / Modules.
+# 1- Módulos / Modules.
 # 2- Estado del script y opciones elegidas/ Script state and selected options.
 # 3- Función limpiar la pantalla / function to clear the screen.
 # 4- Función para elegir idioma / function for language selection.
@@ -9,11 +9,20 @@
 # 6- Número inicial / initial number
 # 7- Número final / ending number
 # 8- Formato del archivo de salida / format of generated file
+# 9- Función que genera los números aleatorios / function that generates the random numbers.
+# 10- Función que genera el archivo .txt.
+# 11- Función que genera el archivo .csv. 
 
 
-# 1- MÓDULOS:
+
+
+
+
+
+# 1- Módulos importados:
 # Módulo para aleatorizar:
-import random   
+import random
+import csv   
 
 # Módulo para manejar la consola de windows y linux creando una funcion clear(): 
 from os import system, name 
@@ -27,9 +36,11 @@ opciones = {
     "cantidad_numeros": 0,
     "valor_inicio": 0,
     "valor_fin": 0,
-    "formato_archivo": 0 #0: txt, 1: PDF, 2: csv
-
+    "formato_archivo": 0, #0: txt, 1: csv
+    
 }
+
+numeros_generados = []
 
 
 
@@ -51,7 +62,7 @@ def elegir_idioma():
                             1) Para español 
                             2) For english
                             """))
-
+    
     opciones["idioma"] = idioma
 
 
@@ -90,37 +101,96 @@ def final():
     opciones["valor_fin"] = final
 
 
+
+
 # 8 - Elegir formato del archivo de salida:
 def formato_archivo():
-    formato = int(input("""Elija el tipo del archivo a generar / Select the type of the file to generate: 
+    if opciones["idioma"] == 1:
+        formato = int(input("""Elija el formato del archivo a generar: 
                             1) .txt 
-                            2) .pdf
-                            3) .csv
+                            2) .csv
                             """))
+
+    elif opciones["idioma"] == 2:
+        formato = int(input("""Select the extension of the file to generate: 
+                            1) .txt 
+                            2) .csv
+                            """))   
+
 
     opciones["formato_archivo"] = formato
 
 
 
 
+# 9 - Función que genera los números aleatorios / function that generates the random numbers:
+def numeros():
+    i = 0
+    while i < opciones["cantidad_numeros"]:
+        numero = random.randint(opciones["valor_inicio"], opciones["valor_fin"])
+        numeros_generados.append(numero)
 
-# Inicio del script:
+        i += 1
+
+    
+
+
+
+
+# 10 - Generar archivos en .txt / Generating .txt files:
+def generar_archivo_txt():
+    if opciones["idioma"] == 1:
+        nombre_archivo = input("Nombre del archivo .txt a generar?: ")
+
+    elif opciones["idioma"] == 2:
+        nombre_archivo = input("Name of the .txt output file?: ")    
+        
+    archivo = open(nombre_archivo, "a")
+
+    for i in numeros_generados:
+        archivo.write(str(i) + " ")
+    
+    archivo.close()
+
+
+
+# 11 - Generar archivos en csv / Generate .csv files:    
+def generar_archivo_csv():
+    
+    nombre_archivo = ""
+    
+    if opciones["idioma"] == 1:
+        nombre_archivo = input("Nombre del archivo .csv a generar?: ")
+
+    elif opciones["idioma"] == 2:
+        nombre_archivo = input("Csv filename to generate?: ")     
+    
+
+    with open(nombre_archivo, 'w', newline="") as file:
+        writer = csv.writer(file, delimiter="\t", lineterminator="\n")
+    
+        writer.writerow(numeros_generados)
+
+
+
+    
+
+# Inicio
 print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
 
 elegir_idioma()
+
+borrar()
+print("CREADOR DE TABLA DE NÚMEROS ALEATORIOS / RANDOM NUMBERS TABLE GENERATOR")
+
+# Elegimos las opciones:
 inicio()
 final()  
 elegir_cantidad_numeros()
 formato_archivo()
 
-# Esto es para ir viendo si el diccionario se va actualizando debidamente
-print(opciones)  
 
+# Generamos los números:
+numeros()
 
-
-
-
-
-
-
-
+# Generamos el archivo:
